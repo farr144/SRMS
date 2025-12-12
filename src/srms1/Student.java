@@ -42,4 +42,5 @@ public class Student {
         System.out.println("Department: " + department);
         System.out.println("GPA: " + gpa);
     }
+
 }
