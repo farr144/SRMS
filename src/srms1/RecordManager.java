@@ -38,6 +38,72 @@ public class RecordManager {
         students.add(s);
     }
 
+    public void updateStudentById(String id, Scanner scanner) {
+    Student target = null;
+
+    for (Student s : students) {
+        if (s.getId().equals(id)) {
+            target = s;
+            break;
+        }
+    }
+
+    if (target == null) {
+        System.out.println(">> Student not found.");
+        return;
+    }
+
+    System.out.println("What do you want to update?");
+    System.out.println("1) Name");
+    System.out.println("2) Department");
+    System.out.println("3) GPA");
+    System.out.println("4) All");
+    System.out.print("Enter choice: ");
+    int ch = scanner.nextInt();
+
+    if (ch == 1 || ch == 4) {
+        System.out.print("Enter new name: ");
+        String newName = scanner.next();
+        target.setName(newName);
+    }
+
+    if (ch == 2 || ch == 4) {
+        System.out.print("Enter new department: ");
+        String newDept = scanner.next();
+        target.setDepartment(newDept);
+    }
+
+    if (ch == 3 || ch == 4) {
+        System.out.print("Enter new GPA: ");
+        double newGpa = scanner.nextDouble();
+        try {
+            target.setGpa(newGpa);
+        } catch (InvalidGPAException e) {
+            System.out.println(">> " + e.getMessage());
+        }
+    }
+
+    if (target instanceof UndergraduateStudent) {
+        System.out.print("Update level? (y/n): ");
+        String ans = scanner.next();
+        if (ans.equalsIgnoreCase("y")) {
+            System.out.print("Enter new level: ");
+            int lvl = scanner.nextInt();
+            ((UndergraduateStudent) target).setLevel(lvl);
+        }
+    } else if (target instanceof PostgraduateStudent) {
+        System.out.print("Update topic? (y/n): ");
+        String ans = scanner.next();
+        if (ans.equalsIgnoreCase("y")) {
+            System.out.print("Enter new topic: ");
+            String topic = scanner.next();
+            ((PostgraduateStudent) target).setTopic(topic);
+        }
+    }
+
+    System.out.println(">> Student updated successfully!");
+}
+
     public boolean removeStudentById(String id) {
         return students.removeIf(s -> s.getId().equals(id));
     }
