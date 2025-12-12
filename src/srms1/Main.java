@@ -12,14 +12,15 @@ public class Main {
             System.out.println("\n===== University System Menu =====");
             System.out.println("1. Add Undergraduate Student");
             System.out.println("2. Add Postgraduate Student");
-            System.out.println("3. Remove Student by ID");
-            System.out.println("4. Display All Students");
-            System.out.println("5. GPA Report");
-            System.out.println("6. Ranking Report");
-            System.out.println("7. Statistics Report");
-            System.out.println("8. Generate ALL Reports to File (Background)");
-            System.out.println("9. Toggle Auto-Save (Multithreading)");
-            System.out.println("10. Save & Exit");
+            System.out.println("3. Update Student by ID");
+            System.out.println("4. Remove Student by ID");
+            System.out.println("5. Display All Students");
+            System.out.println("6. GPA Report");
+            System.out.println("7. Ranking Report");
+            System.out.println("8. Statistics Report");
+            System.out.println("9. Generate ALL Reports to File (Background)");
+            System.out.println("10. Toggle Auto-Save (Multithreading)");
+            System.out.println("11. Save & Exit");
             System.out.print("Enter choice: ");
 
             try {
@@ -51,8 +52,14 @@ public class Main {
                         System.out.println(">> Postgraduate Added.");
                         break;
                     }
+                        case 3: {
+                      System.out.print("Enter Student ID to update: ");
+                      String id = scanner.next();
+                      manager.updateStudentById(id, scanner);
+                      break;
+                    }
 
-                    case 3: {
+                    case 4: {
                         System.out.print("Enter Student ID to remove: ");
                         String rId = scanner.next();
                         if (manager.removeStudentById(rId)) {
@@ -63,27 +70,27 @@ public class Main {
                         break;
                     }
 
-                    case 4:
+                    case 5:
                         manager.displayAllStudents();
                         break;
 
-                    case 5:
+                    case 6:
                         System.out.println(manager.generateGpaReport());
                         break;
 
-                    case 6:
+                    case 7:
                         System.out.println(manager.generateRankingReport());
                         break;
 
-                    case 7:
+                    case 8:
                         System.out.println(manager.generateStatisticsReport());
                         break;
 
-                    case 8:
+                    case 9:
                         System.out.println(manager.generateAllReportsToFileAsync());
                         break;
 
-                    case 9: {
+                    case 10: {
                         if (manager.isAutoSaveRunning()) {
                             System.out.println(manager.stopAutoSave());
                         } else {
@@ -94,7 +101,7 @@ public class Main {
                         break;
                     }
 
-                    case 10:
+                    case 11:
                         manager.saveToFile();
                         manager.shutdown();
                         System.out.println("Exiting... Goodbye!");
