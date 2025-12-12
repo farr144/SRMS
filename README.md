@@ -3,6 +3,7 @@
 A simple Java console application to manage university student records.
 
 ## Features
+- GitHub workflow: Issues + PR
 - Add / remove students
 - Load & save to `students_data.txt`
 - Reports:
