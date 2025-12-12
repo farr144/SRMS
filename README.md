@@ -20,8 +20,11 @@ Open the project in NetBeans and run **Main.java** (`srms1.Main`).
 ## How to Run (Command line)
 From the `SRMS/` folder:
 ```bash
-javac -d out -sourcepath src src/srms1/Main.java
+
+mkdir -p out
+javac -d out src/srms1/*.java
 java -cp out srms1.Main
+
 ```
 
 ## GitHub (Create & Push)
